@@ -25,6 +25,7 @@ export interface IStorage {
   getVisitorsByStatus(status: string): Promise<Visitor[]>;
   getVisitorsByTypeAndDate(type: VisitorType, date: string): Promise<Visitor[]>;
   getVisitorsByDepartmentAndDate(department: Department, date: string): Promise<Visitor[]>;
+  updateResearcherFee(id: number, feePaid: boolean, ticketNumber: string): Promise<Visitor | undefined>;
   
   // Library visit methods
   createLibraryVisit(visit: InsertLibraryVisit): Promise<LibraryVisit>;
@@ -158,6 +159,27 @@ export class MemStorage implements IStorage {
     return Array.from(this.visitors.values()).filter(
       (visitor) => visitor.destination === department && visitor.date === date
     );
+  }
+  
+  async updateResearcherFee(id: number, feePaid: boolean, ticketNumber: string): Promise<Visitor | undefined> {
+    const visitor = this.visitors.get(id);
+    
+    if (!visitor) {
+      return undefined;
+    }
+    
+    if (visitor.visitorType !== "Researcher") {
+      throw new Error("Only researchers can have fee status updated");
+    }
+    
+    const updatedVisitor: Visitor = {
+      ...visitor,
+      feePaid,
+      ticketNumber
+    };
+    
+    this.visitors.set(id, updatedVisitor);
+    return updatedVisitor;
   }
   
   // Library visit methods

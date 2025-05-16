@@ -2,6 +2,7 @@ import { Route, Switch } from "wouter";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import Layout from "@/components/Layout";
 import Reception from "@/pages/reception";
+import Accounts from "@/pages/accounts";
 import Library from "@/pages/library";
 import Reports from "@/pages/reports";
 import NotFound from "@/pages/not-found";
@@ -13,6 +14,7 @@ function App() {
         <Switch>
           <Route path="/" component={Reception} />
           <Route path="/reception" component={Reception} />
+          <Route path="/accounts" component={Accounts} />
           <Route path="/library" component={Library} />
           <Route path="/reports" component={Reports} />
           <Route component={NotFound} />

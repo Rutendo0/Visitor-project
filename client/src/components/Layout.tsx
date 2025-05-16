@@ -38,6 +38,18 @@ export default function Layout({ children }: LayoutProps) {
               </a>
             </Link>
             
+            <Link href="/accounts">
+              <a 
+                className={`whitespace-nowrap px-6 py-4 font-medium focus:outline-none border-b-2 ${
+                  activePath === "/accounts" 
+                    ? "text-gray-800 border-accent" 
+                    : "text-gray-500 hover:text-gray-800 border-transparent hover:border-gray-300"
+                }`}
+              >
+                <i className="fas fa-money-bill-wave mr-2"></i>Accounts
+              </a>
+            </Link>
+            
             <Link href="/library">
               <a 
                 className={`whitespace-nowrap px-6 py-4 font-medium focus:outline-none border-b-2 ${

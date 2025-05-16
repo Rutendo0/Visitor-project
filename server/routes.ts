@@ -14,10 +14,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const date = req.query.date as string || new Date().toISOString().split('T')[0];
       const status = req.query.status as string;
+      const type = req.query.type as string;
       
       let visitors;
       if (status) {
         visitors = await storage.getVisitorsByStatus(status);
+      } else if (type) {
+        visitors = await storage.getVisitorsByTypeAndDate(type as any, date);
       } else {
         visitors = await storage.getVisitorsByDate(date);
       }
@@ -94,6 +97,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(visitor);
     } catch (error) {
       res.status(500).json({ message: "Error checking out visitor" });
+    }
+  });
+  
+  // Fee payment route for researchers
+  app.patch("/api/visitors/:id/fee", async (req: Request, res: Response) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { feePaid, ticketNumber } = req.body;
+      
+      const visitor = await storage.updateResearcherFee(id, feePaid, ticketNumber);
+      
+      if (!visitor) {
+        return res.status(404).json({ message: "Visitor not found" });
+      }
+      
+      res.json(visitor);
+    } catch (error) {
+      res.status(500).json({ message: "Error updating researcher fee status" });
     }
   });
   
