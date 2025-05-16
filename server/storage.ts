@@ -89,11 +89,18 @@ export class MemStorage implements IStorage {
     // Format date as YYYY-MM-DD for easier grouping
     const date = new Date(insertVisitor.timeIn).toISOString().split('T')[0];
     
+    // Initialize optional fields with null values for type safety
     const visitor: Visitor = { 
       ...insertVisitor, 
       id, 
       status: "CheckedIn",
-      date
+      date,
+      timeOut: null,
+      institute: insertVisitor.institute || null,
+      researchArea: insertVisitor.researchArea || null,
+      homeAddress: insertVisitor.homeAddress || null,
+      ticketNumber: insertVisitor.ticketNumber || null,
+      feePaid: insertVisitor.feePaid || null
     };
     
     this.visitors.set(id, visitor);
@@ -192,7 +199,10 @@ export class MemStorage implements IStorage {
       ...insertLibraryVisit,
       id,
       status: "CheckedIn",
-      date
+      date,
+      checkOutTime: null,
+      materialsRequested: insertLibraryVisit.materialsRequested || null,
+      notes: null
     };
     
     this.libraryVisits.set(id, libraryVisit);
