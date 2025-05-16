@@ -4,6 +4,7 @@ import {
   libraryVisits, type LibraryVisit, type InsertLibraryVisit,
   VisitorType, Department, CheckStatus
 } from "@shared/schema";
+import bcrypt from "bcryptjs";
 
 // modify the interface with any CRUD methods
 // you might need
@@ -65,6 +66,69 @@ export class MemStorage implements IStorage {
     this.userCurrentId = 1;
     this.visitorCurrentId = 1;
     this.libraryVisitCurrentId = 1;
+    
+    // Seed default users for testing
+    this.seedDefaultUsers();
+  }
+  
+  private async seedDefaultUsers() {
+    // Admin user
+    const adminPassword = await bcrypt.hash("admin123", 10);
+    const admin = {
+      id: this.userCurrentId++,
+      username: "admin",
+      password: adminPassword,
+      fullName: "System Administrator",
+      role: "Admin",
+      email: "admin@archives.gov.zw",
+      lastLogin: null,
+      createdAt: new Date()
+    };
+    this.users.set(admin.id, admin);
+    
+    // Receptionist user
+    const receptionistPassword = await bcrypt.hash("reception123", 10);
+    const receptionist = {
+      id: this.userCurrentId++,
+      username: "reception",
+      password: receptionistPassword,
+      fullName: "Reception Staff",
+      role: "Receptionist",
+      email: "reception@archives.gov.zw",
+      lastLogin: null,
+      createdAt: new Date()
+    };
+    this.users.set(receptionist.id, receptionist);
+    
+    // Accountant user
+    const accountantPassword = await bcrypt.hash("accounts123", 10);
+    const accountant = {
+      id: this.userCurrentId++,
+      username: "accounts",
+      password: accountantPassword,
+      fullName: "Accounts Staff",
+      role: "Accountant",
+      email: "accounts@archives.gov.zw",
+      lastLogin: null,
+      createdAt: new Date()
+    };
+    this.users.set(accountant.id, accountant);
+    
+    // Library Officer user
+    const libraryPassword = await bcrypt.hash("library123", 10);
+    const libraryOfficer = {
+      id: this.userCurrentId++,
+      username: "library",
+      password: libraryPassword,
+      fullName: "Library Staff",
+      role: "LibraryOfficer",
+      email: "library@archives.gov.zw",
+      lastLogin: null,
+      createdAt: new Date()
+    };
+    this.users.set(libraryOfficer.id, libraryOfficer);
+    
+    console.log("Default users seeded successfully");
   }
 
   // User methods
@@ -83,6 +147,7 @@ export class MemStorage implements IStorage {
     const user: User = { 
       ...insertUser, 
       id,
+      email: insertUser.email || null,
       lastLogin: null,
       createdAt: new Date()
     };
