@@ -13,6 +13,8 @@ export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  updateUserLastLogin(id: number): Promise<User | undefined>;
+  getAllUsers(): Promise<User[]>;
   
   // Visitor methods
   createVisitor(visitor: InsertVisitor): Promise<Visitor>;
@@ -78,9 +80,34 @@ export class MemStorage implements IStorage {
 
   async createUser(insertUser: InsertUser): Promise<User> {
     const id = this.userCurrentId++;
-    const user: User = { ...insertUser, id };
+    const user: User = { 
+      ...insertUser, 
+      id,
+      lastLogin: null,
+      createdAt: new Date()
+    };
     this.users.set(id, user);
     return user;
+  }
+  
+  async updateUserLastLogin(id: number): Promise<User | undefined> {
+    const user = this.users.get(id);
+    
+    if (!user) {
+      return undefined;
+    }
+    
+    const updatedUser: User = {
+      ...user,
+      lastLogin: new Date()
+    };
+    
+    this.users.set(id, updatedUser);
+    return updatedUser;
+  }
+  
+  async getAllUsers(): Promise<User[]> {
+    return Array.from(this.users.values());
   }
   
   // Visitor methods

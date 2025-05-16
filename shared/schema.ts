@@ -2,16 +2,34 @@ import { pgTable, text, serial, integer, boolean, timestamp } from "drizzle-orm/
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
+// User roles enum
+export const UserRoleEnum = z.enum([
+  "Admin",
+  "Receptionist",
+  "Accountant",
+  "LibraryOfficer"
+]);
+
+export type UserRole = z.infer<typeof UserRoleEnum>;
+
 // Base User schema
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
+  fullName: text("full_name").notNull(),
+  role: text("role").notNull(), // Admin, Receptionist, Accountant, LibraryOfficer
+  email: text("email"),
+  lastLogin: timestamp("last_login"),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,
+  fullName: true,
+  role: true,
+  email: true,
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
