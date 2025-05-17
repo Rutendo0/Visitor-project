@@ -2,6 +2,7 @@ import { Route, Switch, useLocation } from "wouter";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import Layout from "@/components/Layout";
 import Login from "@/pages/login";
+import Register from "@/pages/register";
 import Reception from "@/pages/reception";
 import Accounts from "@/pages/accounts";
 import Library from "@/pages/library";
@@ -74,12 +75,14 @@ function App() {
   return (
     <ThemeProvider defaultTheme="light" storageKey="naz-theme">
       <AuthProvider>
-        {currentLocation === "/login" ? (
-          <Login />
+        {currentLocation === "/login" || currentLocation === "/register" ? (
+          <Switch>
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+          </Switch>
         ) : (
           <Layout>
             <Switch>
-              <Route path="/login" component={Login} />
               <Route path="/" component={() => <ProtectedRoute component={Reception} roles={["Admin", "Receptionist"]} />} />
               <Route path="/reception" component={() => <ProtectedRoute component={Reception} roles={["Admin", "Receptionist"]} />} />
               <Route path="/accounts" component={() => <ProtectedRoute component={Accounts} roles={["Admin", "Accountant"]} />} />

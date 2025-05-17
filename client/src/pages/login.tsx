@@ -6,6 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
+import { useAuth } from "@/hooks/useAuth";
 
 // UI Components
 import { Button } from "@/components/ui/button";
@@ -30,6 +31,7 @@ const loginFormSchema = z.object({
 export default function Login() {
   const { toast } = useToast();
   const [, setLocation] = useLocation();
+  const { login } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   
   // Create login form
@@ -41,51 +43,15 @@ export default function Login() {
     },
   });
   
-  // Mutation to handle login
-  const { mutate: login } = useMutation({
-    mutationFn: async (data: z.infer<typeof loginFormSchema>) => {
-      setIsLoading(true);
-      const res = await apiRequest("POST", "/api/auth/login", data);
-      return res.json();
-    },
-    onSuccess: (data) => {
-      // Redirect based on user role
-      toast({
-        title: "Login successful",
-        description: `Welcome back, ${data.user.fullName}`,
-      });
-      
-      // Redirect based on role
-      switch (data.user.role) {
-        case "Receptionist":
-          setLocation("/reception");
-          break;
-        case "Accountant":
-          setLocation("/accounts");
-          break;
-        case "LibraryOfficer":
-          setLocation("/library");
-          break;
-        case "Admin":
-          setLocation("/reports");
-          break;
-        default:
-          setLocation("/");
-      }
-    },
-    onError: (error) => {
-      toast({
-        title: "Login failed",
-        description: "Invalid username or password",
-        variant: "destructive",
-      });
-      setIsLoading(false);
-    },
-  });
-  
   // Handle form submission
-  function onSubmit(data: z.infer<typeof loginFormSchema>) {
-    login(data);
+  async function onSubmit(data: z.infer<typeof loginFormSchema>) {
+    setIsLoading(true);
+    try {
+      await login(data.username, data.password);
+      // The redirect will be handled by the login function
+    } catch (error) {
+      setIsLoading(false);
+    }
   }
   
   return (
@@ -168,6 +134,15 @@ export default function Login() {
                 </Button>
               </form>
             </Form>
+            
+            <div className="mt-4 text-center">
+              <p className="text-sm text-neutral-500">
+                Don't have an account?{" "}
+                <Button variant="link" className="p-0 h-auto" onClick={() => setLocation("/register")}>
+                  Register now
+                </Button>
+              </p>
+            </div>
           </CardContent>
           <Separator />
           <CardFooter className="justify-center py-4">

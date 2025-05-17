@@ -62,6 +62,48 @@ export async function registerRoutes(app: Express): Promise<Server> {
   }));
 
   // Authentication routes
+  app.post("/api/auth/register", async (req: Request, res: Response) => {
+    try {
+      const { username, password, fullName, role, email } = req.body;
+      
+      // Check if username exists
+      const existingUser = await storage.getUserByUsername(username);
+      if (existingUser) {
+        return res.status(400).json({ message: "Username already exists" });
+      }
+      
+      // Hash password
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+      
+      // Create user
+      const user = await storage.createUser({
+        username,
+        password: hashedPassword,
+        fullName,
+        role,
+        email: email || null,
+      });
+      
+      // Don't return the password
+      const { password: _, ...userWithoutPassword } = user;
+      
+      res.status(201).json({ 
+        message: "User registered successfully",
+        user: userWithoutPassword
+      });
+    } catch (error) {
+      console.error("Registration error:", error);
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ 
+          message: "Invalid registration data", 
+          errors: error.errors 
+        });
+      }
+      res.status(500).json({ message: "Error during registration" });
+    }
+  });
+
   app.post("/api/auth/login", async (req: Request, res: Response) => {
     try {
       const { username, password } = req.body;
