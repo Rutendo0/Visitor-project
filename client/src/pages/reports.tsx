@@ -238,33 +238,33 @@ export default function Reports() {
               </div>
               <div>
                 <p className="text-sm text-neutral-500">Total Visitors</p>
-                <p className="font-medium">
-                  {loadingSummary ? (
-                    <Skeleton className="h-4 w-8" />
-                  ) : (
-                    dailySummary?.totalVisitors || 0
-                  )}
-                </p>
+                {loadingSummary ? (
+                  <Skeleton className="h-4 w-8 font-medium" />
+                ) : (
+                  <p className="font-medium">
+                    {dailySummary?.totalVisitors || 0}
+                  </p>
+                )}
               </div>
               <div>
                 <p className="text-sm text-neutral-500">General Visitors</p>
-                <p className="font-medium">
-                  {loadingSummary ? (
-                    <Skeleton className="h-4 w-8" />
-                  ) : (
-                    dailySummary?.generalVisitors || 0
-                  )}
-                </p>
+                {loadingSummary ? (
+                  <Skeleton className="h-4 w-8 font-medium" />
+                ) : (
+                  <p className="font-medium">
+                    {dailySummary?.generalVisitors || 0}
+                  </p>
+                )}
               </div>
               <div>
                 <p className="text-sm text-neutral-500">Researchers</p>
-                <p className="font-medium">
-                  {loadingSummary ? (
-                    <Skeleton className="h-4 w-8" />
-                  ) : (
-                    dailySummary?.researchers || 0
-                  )}
-                </p>
+                {loadingSummary ? (
+                  <Skeleton className="h-4 w-8 font-medium" />
+                ) : (
+                  <p className="font-medium">
+                    {dailySummary?.researchers || 0}
+                  </p>
+                )}
               </div>
             </div>
             <Button 
@@ -289,61 +289,61 @@ export default function Reports() {
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div>
                 <p className="text-sm text-neutral-500">Most Visited</p>
-                <p className="font-medium">
-                  {loadingSummary ? (
-                    <Skeleton className="h-4 w-20" />
-                  ) : (
-                    (() => {
+                {loadingSummary ? (
+                  <Skeleton className="h-4 w-20 font-medium" />
+                ) : (
+                  <p className="font-medium">
+                    {(() => {
                       if (!dailySummary) return "None";
                       const depts = dailySummary.departments;
                       const mostVisited = Object.entries(depts).reduce(
-                        (max, [dept, count]) => count > max.count ? { dept, count } : max,
+                        (max, [dept, count]) => (count as number) > max.count ? { dept, count: count as number } : max,
                         { dept: "None", count: 0 }
                       );
                       return `${mostVisited.dept} (${mostVisited.count})`;
-                    })()
-                  )}
-                </p>
+                    })()}
+                  </p>
+                )}
               </div>
               <div>
                 <p className="text-sm text-neutral-500">Least Visited</p>
-                <p className="font-medium">
-                  {loadingSummary ? (
-                    <Skeleton className="h-4 w-20" />
-                  ) : (
-                    (() => {
+                {loadingSummary ? (
+                  <Skeleton className="h-4 w-20 font-medium" />
+                ) : (
+                  <p className="font-medium">
+                    {(() => {
                       if (!dailySummary) return "None";
                       const depts = dailySummary.departments;
-                      const visitedDepts = Object.entries(depts).filter(([_, count]) => count > 0);
+                      const visitedDepts = Object.entries(depts).filter(([_, count]) => (count as number) > 0);
                       if (visitedDepts.length === 0) return "None";
                       const leastVisited = visitedDepts.reduce(
-                        (min, [dept, count]) => count < min.count ? { dept, count } : min,
+                        (min, [dept, count]) => (count as number) < min.count ? { dept, count: count as number } : min,
                         { dept: visitedDepts[0][0], count: visitedDepts[0][1] as number }
                       );
                       return `${leastVisited.dept} (${leastVisited.count})`;
-                    })()
-                  )}
-                </p>
+                    })()}
+                  </p>
+                )}
               </div>
               <div>
                 <p className="text-sm text-neutral-500">Average Stay</p>
-                <p className="font-medium">
-                  {loadingVisitors ? (
-                    <Skeleton className="h-4 w-16" />
-                  ) : visitors ? (
-                    calculateAverageDuration(visitors)
-                  ) : "-"}
-                </p>
+                {loadingVisitors ? (
+                  <Skeleton className="h-4 w-16 font-medium" />
+                ) : (
+                  <p className="font-medium">
+                    {visitors ? calculateAverageDuration(visitors) : "-"}
+                  </p>
+                )}
               </div>
               <div>
                 <p className="text-sm text-neutral-500">Peak Hours</p>
-                <p className="font-medium">
-                  {loadingVisitors ? (
-                    <Skeleton className="h-4 w-24" />
-                  ) : (
-                    "10:00 - 11:00"
-                  )}
-                </p>
+                {loadingVisitors ? (
+                  <Skeleton className="h-4 w-24 font-medium" />
+                ) : (
+                  <p className="font-medium">
+                    10:00 - 11:00
+                  </p>
+                )}
               </div>
             </div>
             <Button className="w-full bg-primary text-white">

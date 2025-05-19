@@ -1,0 +1,53 @@
+[vite] connecting...
+[vite] connected.
+Warning: validateDOMNesting(...): <div> cannot appear as a descendant of &lt;p&gt;.
+    at div
+    at Skeleton (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/src/components/ui/skeleton.tsx:19:3)
+    at p
+    at div
+    at div
+    at div
+    at div
+    at div
+    at div
+    at Reports (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/src/pages/reports.tsx:72:39)
+    at ProtectedRoute (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/src/App.tsx?t=1747637545468&v=_uiqG6YmeL98x6Gyye_qw:30:38)
+    at component
+    at Route (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=0a03f70f:323:16)
+    at Switch (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=0a03f70f:379:17)
+    at main
+    at div
+    at Layout (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/src/components/Layout.tsx?t=1747637545468:21:34)
+    at AuthProvider (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/src/hooks/useAuth.tsx:24:32)
+    at ThemeProvider (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/src/components/ui/theme-provider.tsx:25:3)
+    at App (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/src/App.tsx?t=1747637545468&v=_uiqG6YmeL98x6Gyye_qw:84:29)
+    at Provider (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-LYFAO6LD.js?v=0a03f70f:22:15)
+    at TooltipProvider (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=0a03f70f:57:5)
+    at QueryClientProvider (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=0a03f70f:2805:3)
+at div
+at Skeleton (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/src/components/ui/skeleton.tsx:19:3)
+at p
+at div
+at div
+at div
+at div
+at div
+at div
+at Reports (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/src/pages/reports.tsx:72:39)
+at ProtectedRoute (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/src/App.tsx?t=1747637545468&amp;v=_uiqG6YmeL98x6Gyye_qw:30:38)
+at component
+at Route (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=0a03f70f:323:16)
+at Switch (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=0a03f70f:379:17)
+at main
+at div
+at Layout (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/src/components/Layout.tsx?t=1747637545468:21:34)
+at AuthProvider (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/src/hooks/useAuth.tsx:24:32)
+at ThemeProvider (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/src/components/ui/theme-provider.tsx:25:3)
+at App (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/src/App.tsx?t=1747637545468&amp;v=_uiqG6YmeL98x6Gyye_qw:84:29)
+at Provider (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-LYFAO6LD.js?v=0a03f70f:22:15)
+at TooltipProvider (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=0a03f70f:57:5)
+at QueryClientProvider (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=0a03f70f:2805:3)
+at t.value (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:17465)
+at new t (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:12630)
+at t.value (https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:32766)
+at https://89f42fb9-cf73-4430-bce0-c0757e625a49-00-3cgkbvxdif0az.picard.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:34400
