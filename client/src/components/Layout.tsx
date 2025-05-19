@@ -26,52 +26,48 @@ export default function Layout({ children }: LayoutProps) {
       <nav className="bg-white shadow-md mb-6">
         <div className="container mx-auto px-4">
           <div className="flex overflow-x-auto">
-            <Link href="/reception">
-              <a 
-                className={`whitespace-nowrap px-6 py-4 font-medium focus:outline-none border-b-2 ${
-                  activePath === "/reception" 
-                    ? "text-gray-800 border-accent" 
-                    : "text-gray-500 hover:text-gray-800 border-transparent hover:border-gray-300"
-                }`}
-              >
-                <i className="fas fa-desktop mr-2"></i>Reception Desk
-              </a>
+            <Link 
+              href="/reception"
+              className={`whitespace-nowrap px-6 py-4 font-medium focus:outline-none border-b-2 ${
+                activePath === "/reception" 
+                  ? "text-gray-800 border-accent" 
+                  : "text-gray-500 hover:text-gray-800 border-transparent hover:border-gray-300"
+              }`}
+            >
+              <i className="fas fa-desktop mr-2"></i>Reception Desk
             </Link>
             
-            <Link href="/accounts">
-              <a 
-                className={`whitespace-nowrap px-6 py-4 font-medium focus:outline-none border-b-2 ${
-                  activePath === "/accounts" 
-                    ? "text-gray-800 border-accent" 
-                    : "text-gray-500 hover:text-gray-800 border-transparent hover:border-gray-300"
-                }`}
-              >
-                <i className="fas fa-money-bill-wave mr-2"></i>Accounts
-              </a>
+            <Link 
+              href="/accounts"
+              className={`whitespace-nowrap px-6 py-4 font-medium focus:outline-none border-b-2 ${
+                activePath === "/accounts" 
+                  ? "text-gray-800 border-accent" 
+                  : "text-gray-500 hover:text-gray-800 border-transparent hover:border-gray-300"
+              }`}
+            >
+              <i className="fas fa-money-bill-wave mr-2"></i>Accounts
             </Link>
             
-            <Link href="/library">
-              <a 
-                className={`whitespace-nowrap px-6 py-4 font-medium focus:outline-none border-b-2 ${
-                  activePath === "/library" 
-                    ? "text-gray-800 border-accent" 
-                    : "text-gray-500 hover:text-gray-800 border-transparent hover:border-gray-300"
-                }`}
-              >
-                <i className="fas fa-book mr-2"></i>Library Control
-              </a>
+            <Link 
+              href="/library"
+              className={`whitespace-nowrap px-6 py-4 font-medium focus:outline-none border-b-2 ${
+                activePath === "/library" 
+                  ? "text-gray-800 border-accent" 
+                  : "text-gray-500 hover:text-gray-800 border-transparent hover:border-gray-300"
+              }`}
+            >
+              <i className="fas fa-book mr-2"></i>Library Control
             </Link>
             
-            <Link href="/reports">
-              <a 
-                className={`whitespace-nowrap px-6 py-4 font-medium focus:outline-none border-b-2 ${
-                  activePath === "/reports" 
-                    ? "text-gray-800 border-accent" 
-                    : "text-gray-500 hover:text-gray-800 border-transparent hover:border-gray-300"
-                }`}
-              >
-                <i className="fas fa-chart-bar mr-2"></i>Reports
-              </a>
+            <Link 
+              href="/reports"
+              className={`whitespace-nowrap px-6 py-4 font-medium focus:outline-none border-b-2 ${
+                activePath === "/reports" 
+                  ? "text-gray-800 border-accent" 
+                  : "text-gray-500 hover:text-gray-800 border-transparent hover:border-gray-300"
+              }`}
+            >
+              <i className="fas fa-chart-bar mr-2"></i>Reports
             </Link>
           </div>
         </div>
