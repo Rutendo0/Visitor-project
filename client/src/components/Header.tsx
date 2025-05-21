@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function Header() {
   const [currentDateTime, setCurrentDateTime] = useState<string>("");
