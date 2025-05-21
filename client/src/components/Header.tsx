@@ -37,9 +37,15 @@ export default function Header() {
               <p className="text-sm">Visitor Management System</p>
             </div>
           </div>
-          <div className="flex items-center">
-            <span className="mr-4"><i className="fas fa-user mr-2"></i>Staff Portal</span>
+          <div className="flex items-center gap-4">
+            <span><i className="fas fa-user mr-2"></i>Staff Portal</span>
             <span className="bg-secondary py-1 px-3 rounded">{currentDateTime}</span>
+            <button 
+              onClick={() => window.location.href = '/api/auth/logout'} 
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90 px-3 py-1 rounded"
+            >
+              Logout
+            </button>
           </div>
         </div>
       </div>
