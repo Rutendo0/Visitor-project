@@ -41,7 +41,7 @@ export default function Header() {
             <span><i className="fas fa-user mr-2"></i>Staff Portal</span>
             <span className="bg-secondary py-1 px-3 rounded">{currentDateTime}</span>
             <button 
-              onClick={() => window.location.href = '/api/auth/logout'} 
+              onClick={useAuth().logout} 
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90 px-3 py-1 rounded"
             >
               Logout
